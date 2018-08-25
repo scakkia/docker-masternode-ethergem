@@ -3,8 +3,7 @@ Dockerized EGEM Quarry Masternode
 
 Docker repository: https://hub.docker.com/r/zibastian/egem-quarry-node/
 
-#Donation
----
+# Donation
 If this image helps you reduce time to deploy, I like beer :)
 
 **EGEM:** 0x21239B99D70cf4EEB04f4C7916c03b422b3a4Eb0  
