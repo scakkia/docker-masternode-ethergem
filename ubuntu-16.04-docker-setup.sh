@@ -69,13 +69,33 @@ sudo apt-get update && apt-get install docker-ce -y
 sudo systemctl enable docker
 sudo systemctl start docker
 
+echo "Downloading chaindata"
+wget https://s3.us-east-2.amazonaws.com/ethergem/chaindata.zip
+
+echo "Creating docker volume"
+docker volume create egem-node
+
+echo "Extracting chaindata"
+unzip chaindata.zip
+/opt/live-net/egem/chaindata
+
+echo "Starting Docker container"
 docker run -d --restart=unless-stopped \
                -v egem-node:/opt -p 30666:30666 \
                -e conf_NAME="${name}" -e conf_CONTACT="${details}" \
                zibastian/egem-quarry-node
-               
+
+echo "Stopping Docker"
+sudo systemctl stop docker
+
+echo "Injecting chaindata"
+sudo mv -f chaindata/* /var/lib/docker/volumes/egem-node/_data/opt/live-net/egem/chaindata/
+sudo chown -R 900:900 /var/lib/docker/volumes/egem-node/_data/opt/live-net/egem/chaindata/
+sudo rm -fr chaindata*
+
 echo ""
-echo "all done"
+echo "all done. Restarting Docker"
+sudo systemctl stop docker
 echo ""
 docker ps
 
