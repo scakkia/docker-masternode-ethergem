@@ -28,8 +28,6 @@ echo '
 
 '
 
-echo ""
-echo ""
 echo -n "How would you like to name your instance? (Example: TeamEGEM Node West Coast Europe) "
 read INSTANCE_NAME
 name=$(echo $INSTANCE_NAME)
