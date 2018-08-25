@@ -27,14 +27,6 @@ echo '
 
 
 '
-echo "Updating linux packages"
-echo "If prompted about Grub Configuration select keep the local version currently installed"
-sleep 10
-
-sudo apt-get update && apt-get upgrade -y
-
-echo ""
-echo ""
 echo -n "How would you like to name your instance? (Example: TeamEGEM Node West Coast Europe) "
 read INSTANCE_NAME
 name=$(echo $INSTANCE_NAME)
@@ -42,6 +34,14 @@ name=$(echo $INSTANCE_NAME)
 echo -n "What is your node's contact details? (Example: Twitter:@TeamEGEM) "
 read CONTACT_DETAILS
 details=$(echo $CONTACT_DETAILS)
+
+echo ""
+echo ""
+echo "Updating linux packages"
+echo "If prompted about Grub Configuration select keep the local version currently installed"
+sleep 10
+
+sudo apt-get update && apt-get upgrade -y
 
 sudo  apt-get install -y --no-install-recommends apt-transport-https ca-certificates curl software-properties-common fail2ban ufw
 
