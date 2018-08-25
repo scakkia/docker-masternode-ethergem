@@ -12,7 +12,7 @@ do
   echo -e "Enter your selection: \c"
   read answer
   case "$answer" in
-    1) bash -c "$(wget -O - https://raw.githubusercontent.com/buzzkillb/EGEM-node-install/master/createswap.sh)" && bash -c "$(wget -O - https://raw.githubusercontent.com/zibastian-mn/egem-quarry-node-docker/master/ubuntu-16.04-docker-setup.sh)" && exit ;;
+    1) bash -c "$(wget -O - https://raw.githubusercontent.com/buzzkillb/EGEM-node-install/master/createswap.sh)" && bash -c "$(wget -O - https://raw.githubusercontent.com/zibastian-mn/egem-quarry-node-docker/master/ubuntu-16.04-docker-deploy.sh)" && exit ;;
     2) bash -c "$(wget -O - https://raw.githubusercontent.com/zibastian-mn/egem-quarry-node-docker/master/ubuntu-16.04-docker-deploy.sh)" && exit ;;
     q) exit ;;
   esac
