@@ -16,4 +16,11 @@ sed "s/'/\"/g" /opt/egem/egem-net-intelligence-api/app.json
 
 cd /opt/egem/egem-net-intelligence-api && pm2 start app.json
 
-egem --datadir /opt/egem/live-net/ --maxpeers 100 --rpc
+MEMORY=$(grep MemTotal /proc/meminfo | awk '{print $2}')
+
+if [ $MEMORY -lt 2000000 ]; then
+	echo "The host system has less than 2 Gb of RAM. Starting with --cache 512
+	CACHE='--cache 512'
+fi
+
+egem --datadir /opt/egem/live-net/ --maxpeers 100 --rpc $CACHE
