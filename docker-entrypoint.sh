@@ -18,9 +18,13 @@ cd /opt/egem/egem-net-intelligence-api && pm2 start app.json
 
 MEMORY=$(grep MemTotal /proc/meminfo | awk '{print $2}')
 
-if [ $MEMORY -lt 2000000 ]; then
-	echo "The host system has less than 2 Gb of RAM. Starting with --cache 512"
+if [ $MEMORY -lt 3000000 ]; then
 	CACHE='--cache 512'
+else
+	if [ $MEMORY -lt 2000000 ]; then
+		echo "The host system has less than 2 Gb of RAM. Starting with --cache 256"
+		CACHE='--cache 256'
+	fi
 fi
 
 egem --datadir /opt/egem/live-net/ --maxpeers 100 --rpc $CACHE
