@@ -36,7 +36,6 @@ cYellow='\e[93m'
 SKIP_SWAP=0
 
 
-
 #############
 # Functions #
 #############
@@ -156,6 +155,30 @@ get_instance_Contact () {
 	esac
 }
 
+install_system_upgrades () {
+	echo ""
+	echo "  Do you want to want to install the latest system updates ?"
+	echo -n "  Enter 'Yes' or 'No' : "
+	read answer
+	case "$answer" in
+		"Yes" | "YES" | "yes")
+			clear
+			echo "The system update will start in 10 seconds"
+			echo -e "${cYellow}If prompted about Grub Configuration select keep the local version currently installed${cNone}"
+			sleep 10
+
+			sudo apt-get update && apt-get upgrade -y
+			fHeaders
+			;;
+		"No" | "NO" | "no")
+			;;
+		*)
+			install_system_upgrades
+			;;
+	esac
+}
+
+
 
 #########
 # Start #
@@ -194,14 +217,9 @@ get_instance_Contact
 # System upgrade #
 ##################
 
-clear
-echo "The system update will start in 10 seconds"
-echo -e "${cYellow}If prompted about Grub Configuration select keep the local version currently installed${cNone}"
-sleep 10
+install_system_upgrades
 
-sudo apt-get update && apt-get upgrade -y
 
-783895880cab96ec78db50b3cb34b53bc4a024d17309b8123229c69882e61cca
 
 #######################
 # System dependencies #
@@ -211,17 +229,7 @@ clear
 echo "The system dependencies setup will start in 5 seconds"
 sleep 5
 
-sudo  apt-get install -y --no-install-recommends apt-transport-https ca-certificates curl software-properties-common fail2ban ufw
-
-#ufw default allow outgoing
-#ufw default deny incoming
-ufw allow ssh/tcp
-ufw limit ssh/tcp
-ufw allow 8545/tcp
-ufw allow 30666/tcp
-ufw allow 30661/tcp
-ufw logging on
-#ufw --force enable
+sudo  apt-get install -y --no-install-recommends apt-transport-https ca-certificates curl software-properties-common
 
 
 
@@ -244,6 +252,8 @@ fHeaders
 
 echo "  Setup done. Starting the node"
 echo ""
+docker pull zibastian/masternode-ethergem
+
 CONTAINER=$(
 	docker run -d --restart=unless-stopped \
                -v egem-node:/opt/egem -p 30666:30666 \
@@ -255,7 +265,9 @@ if [ ! -z "$CONTAINER" ]; then
 	NAME=$(docker inspect --format='{{.Name}}' $CONTAINER | sed -e 's/^\///g')
 	fHeaders
 	echo -e "  All good ! Your node is running under a docker container named ${cYellow}${NAME}${cNone}"
-	echo "  Your node should be listed on https://network.egem.io in few seconds"
+	echo "  Your node should be listed on https://network.egem.io in few seconds."
+	echo ""
+	echo "  If your node is not online, please check your firewall and open port 30666/tcp."
 	echo ""
 	echo "  Use 'docker ps' to get more details"
 	echo ""
