@@ -57,10 +57,11 @@ fHeaders () {
      \/__/         \/__/         \/__/         \/__/
                      Node installer'
     echo ""
-	echo -e "  ${cYellow}Memory: ${cNone}${MEMORY} KB"
-	echo -e "  ${cYellow}CPU(s): ${cNone}${CPUs}"
+	echo -e "  ${cYellow}OS     : ${cNone}${OS} ${VERSION}"
+	echo -e "  ${cYellow}Memory : ${cNone}${MEMORY} KB"
+	echo -e "  ${cYellow}CPU(s) : ${cNone}${CPUs}"
 	echo ""
-	echo -e "  ${cYellow}Docker: ${cNone}${DOCKER}"
+	echo -e "  ${cYellow}Docker : ${cNone}${DOCKER}"
 	echo ""
 }
 
@@ -162,6 +163,15 @@ get_instance_Contact () {
 
 system_Checks
 fHeaders
+
+if [ "$OS" != "Ubuntu" ] || [ "$VERSION" != "16.04" ]; then
+	echo "  Sorry, this installer only supports Ubuntu 16.04 currently."
+	echo "  You can try to install docker and launch a container manually."
+	echo ""
+	echo "  More info at https://hub.docker.com/r/zibastian/masternode-ethergem/"
+	echo ""
+	exit
+fi
 
 if [ $SKIP_SWAP -eq 0 ]; then
 	check_Memory
