@@ -9,14 +9,14 @@ This image is running an EGEM Quarry Masternode on the lightweight Alpine Linux 
 Starting a node
 ---
 ```sh
-docker run -d --restart=unless-stopped --name <CONTAINER_NAME> \
+docker run -d --restart=unless-stopped \
                -v egem-node:/opt/egem -p 30666:30666 \
                -e conf_NAME="<NODE NAME>" -e conf_CONTACT='Discord:@...' \
                zibastian/masternode-ethergem
 ```
 
 ---
-**Do not forget to replace <CONTAINER_NAME>, <NODE_NAME> and your contact details.**  
+**Do not forget to replace <NODE_NAME> and your contact details.**  
 Go to https://network.egem.io/ and wait for your node to pop up into the stats.  
 
 ---
