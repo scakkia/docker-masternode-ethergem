@@ -2,7 +2,7 @@ Introduction
 ---
 This image is running an EGEM Quarry Masternode on the lightweight Alpine Linux distribution.
 
-**GitHub:** https://github.com/zibastian-mn/docker-masternode-ethergem/ 
+**GitHub:** https://github.com/zibastian-mn/docker-masternode-ethergem/  
 **Docker:** https://hub.docker.com/r/zibastian/masternode-ethergem/
 
 ---
