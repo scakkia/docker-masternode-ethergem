@@ -16,7 +16,7 @@ docker run -d --restart=unless-stopped --name <CONTAINER_NAME> \
 ```
 
 ---
-**Do not forget to replace <CONTAINER_NAME>, <NODE NAME> and your contact details.**  
+**Do not forget to replace <CONTAINER_NAME>, <NODE_NAME> and your contact details.**  
 Go to https://network.egem.io/ and wait for your node to pop up into the stats.  
 
 ---
