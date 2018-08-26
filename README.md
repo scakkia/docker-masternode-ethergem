@@ -10,7 +10,7 @@ Starting a node
 ---
 ```sh
 docker run -d --restart=unless-stopped --name <CONTAINER_NAME> \
-               -v egem-node:/opt -p 30666:30666 \
+               -v egem-node:/opt/egem -p 30666:30666 \
                -e conf_NAME="<NODE NAME>" -e conf_CONTACT='Discord:@...' \
                zibastian/egem-quarry-node
 ```
