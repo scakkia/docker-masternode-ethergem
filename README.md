@@ -2,8 +2,8 @@ Introduction
 ---
 This image is running an EGEM Quarry Masternode on the lightweight Alpine Linux distribution.
 
-**GitHub:** https://github.com/zibastian-mn/egem-quarry-node-docker/  
-**Docker:** https://hub.docker.com/r/zibastian/egem-quarry-node/
+**GitHub:** https://github.com/zibastian-mn/docker-masternode-ethergem/  
+**Docker:** https://hub.docker.com/r/zibastian/masternode-ethergem/
 
 ---
 Starting a node
@@ -12,7 +12,7 @@ Starting a node
 docker run -d --restart=unless-stopped --name <CONTAINER_NAME> \
                -v egem-node:/opt/egem -p 30666:30666 \
                -e conf_NAME="<NODE NAME>" -e conf_CONTACT='Discord:@...' \
-               zibastian/egem-quarry-node
+               zibastian/masternode-ethergem
 ```
 
 ---

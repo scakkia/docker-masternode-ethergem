@@ -71,7 +71,7 @@ sudo systemctl start docker
 docker run -d --restart=unless-stopped \
                -v egem-node:/opt/egem -p 30666:30666 \
                -e conf_NAME="${name}" -e conf_CONTACT="${details}" \
-               zibastian/egem-quarry-node
+               zibastian/masternode-ethergem
                
 echo ""
 echo "all done"
