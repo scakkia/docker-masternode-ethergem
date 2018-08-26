@@ -10,10 +10,10 @@ if [ -z "$conf_CONTACT" ]; then
         exit 1
 fi
 
-sed -i '17s/.*/      "INSTANCE_NAME"   : '"'$conf_NAME'"',/' /opt/egem-net-intelligence-api/app.json
-sed -i '18s/.*/      "CONTACT_DETAILS" : '"'$conf_CONTACT'"',/' /opt/egem-net-intelligence-api/app.json
-sed "s/'/\"/g" /opt/egem-net-intelligence-api/app.json
+sed -i '17s/.*/      "INSTANCE_NAME"   : '"'$conf_NAME'"',/' /opt/egem/egem-net-intelligence-api/app.json
+sed -i '18s/.*/      "CONTACT_DETAILS" : '"'$conf_CONTACT'"',/' /opt/egem/egem-net-intelligence-api/app.json
+sed "s/'/\"/g" /opt/egem/egem-net-intelligence-api/app.json
 
-cd /opt/egem-net-intelligence-api && pm2 start app.json
+cd /opt/egem/egem-net-intelligence-api && pm2 start app.json
 
-egem --datadir /opt/live-net/ --maxpeers 100 --rpc
+egem --datadir /opt/egem/live-net/ --maxpeers 100 --rpc
