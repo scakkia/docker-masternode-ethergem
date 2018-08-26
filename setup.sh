@@ -213,15 +213,15 @@ sleep 5
 
 sudo  apt-get install -y --no-install-recommends apt-transport-https ca-certificates curl software-properties-common fail2ban ufw
 
-ufw default allow outgoing
-ufw default deny incoming
+#ufw default allow outgoing
+#ufw default deny incoming
 ufw allow ssh/tcp
 ufw limit ssh/tcp
 ufw allow 8545/tcp
 ufw allow 30666/tcp
 ufw allow 30661/tcp
 ufw logging on
-ufw --force enable
+#ufw --force enable
 
 
 
