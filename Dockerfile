@@ -3,7 +3,7 @@ FROM golang:1.10-alpine as builder
 RUN apk add -U --no-cache ca-certificates git build-base make gcc musl-dev linux-headers
 
 RUN go get github.com/TeamEGEM/go-egem
-RUN cd /go/src/github.com/TeamEGEM/go-egem && make
+RUN cd /go/src/github.com/TeamEGEM/go-egem && make egem
 
 FROM alpine:latest
 MAINTAINER Zibastian <Discord: @zibastian>
