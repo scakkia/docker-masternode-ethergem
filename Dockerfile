@@ -2,13 +2,13 @@ FROM golang:1.10-alpine as builder
 
 RUN apk add -U --no-cache ca-certificates git build-base make gcc musl-dev linux-headers
 
-RUN go get github.com/TeamEGEM/go-egem
-RUN cd /go/src/github.com/TeamEGEM/go-egem && make egem
+RUN go get git.egem.io/team/go-egem.git ; exit 0
+RUN cd /go/src/git.egem.io/team/go-egem.git && chmod +x build/env.sh && make egem
 
 FROM alpine:latest
 MAINTAINER Zibastian <Discord: @zibastian>
 
-COPY --from=builder /go/src/github.com/TeamEGEM/go-egem/build/bin/egem /usr/bin/
+COPY --from=builder /go/src/git.egem.io/team/go-egem.git/build/bin/egem /usr/bin/
 
 RUN apk add -U --no-cache nodejs npm git curl su-exec
 RUN npm install -g pm2
@@ -34,5 +34,5 @@ USER ${usr}
 
 WORKDIR /opt/${usr}
 
-EXPOSE 30666/tcp
-
+EXPOSE 30666
+EXPOSE 8895
