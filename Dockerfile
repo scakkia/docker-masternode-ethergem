@@ -36,5 +36,3 @@ WORKDIR /opt/${usr}
 
 EXPOSE 30666/tcp
 EXPOSE 30666/udp
-EXPOSE 8895/tcp
-EXPOSE 8895/udp
